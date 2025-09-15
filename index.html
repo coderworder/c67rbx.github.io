@@ -150,7 +150,7 @@ async function loadGames() {
   container.innerHTML = 'Loading games...';
 
   try {
-    const response = await fetch('https://api.rolimons.com/games/v1/gamelist');
+    const response = await fetch('/api/games'); // call Vercel serverless function
     const data = await response.json();
 
     if (!data.success) {
@@ -160,7 +160,6 @@ async function loadGames() {
 
     container.innerHTML = '';
 
-    // Top 12 games sorted by active players
     const gamesArray = Object.entries(data.games)
       .sort((a, b) => b[1][1] - a[1][1])
       .slice(0, 12);
@@ -188,6 +187,7 @@ async function loadGames() {
     console.error(error);
   }
 }
+
 
 // Load games on page load
 loadGames();
