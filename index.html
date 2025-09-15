@@ -6,50 +6,46 @@
 <title>C67 | Roblox Hub</title>
 <style>
 /* RESET */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
-}
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', sans-serif; }
 
 /* COLORS */
 :root {
-  --primary: #ff3cff;
-  --secondary: #00ffff;
-  --bg: #0a0a0a;
-  --card-bg: #111;
-  --text-light: #ccc;
+  --primary:#ff3cff;
+  --secondary:#00ffff;
+  --bg:#0a0a0a;
+  --card-bg:#111;
+  --text-light:#ccc;
 }
 
 /* BODY */
 body {
-  background: var(--bg);
-  color: #fff;
-  padding: 2rem;
-  text-align: center;
+  background:var(--bg);
+  color:#fff;
+  padding:2rem;
+  text-align:center;
 }
 
 /* HEADER */
 h1 {
-  font-size: 3rem;
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 1rem;
+  font-size:3rem;
+  background: linear-gradient(90deg,var(--primary),var(--secondary));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  margin-bottom:1rem;
 }
 
+/* REFRESH BUTTON */
 button.refresh-btn {
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-  border: none;
-  padding: 0.7rem 1.8rem;
-  color: #000;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 1.5rem;
-  border-radius: 10px;
-  transition: transform 0.2s, box-shadow 0.2s;
-  font-size: 1rem;
+  background: linear-gradient(90deg,var(--primary),var(--secondary));
+  border:none;
+  padding:0.7rem 1.8rem;
+  color:#000;
+  font-weight:bold;
+  cursor:pointer;
+  margin-top:1.5rem;
+  border-radius:10px;
+  transition:transform 0.2s, box-shadow 0.2s;
+  font-size:1rem;
 }
 
 button.refresh-btn:hover {
@@ -59,82 +55,75 @@ button.refresh-btn:hover {
 
 /* GAMES GRID */
 #games {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-  padding: 0 1rem;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:2rem;
+  margin-top:2rem;
+  padding:0 1rem;
 }
 
 /* GAME CARD */
 .game-card {
-  background: var(--card-bg);
-  border: 2px solid var(--primary);
-  border-radius: 15px;
-  overflow: hidden;
-  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  background:var(--card-bg);
+  border:2px solid var(--primary);
+  border-radius:15px;
+  overflow:hidden;
+  transition:transform 0.3s, box-shadow 0.3s, border-color 0.3s;
 }
 
 .game-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 0 20px var(--primary), 0 0 25px var(--secondary);
+  transform:translateY(-8px);
+  box-shadow:0 0 20px var(--primary),0 0 25px var(--secondary);
   border-color: var(--secondary);
 }
 
 .game-card img {
-  width: 100%;
-  display: block;
-  transition: transform 0.3s;
+  width:100%;
+  display:block;
+  transition:transform 0.3s;
 }
 
-.game-card img:hover {
-  transform: scale(1.05);
-}
+.game-card img:hover { transform:scale(1.05); }
 
 .game-card .content {
-  padding: 1rem;
-  text-align: left;
+  padding:1rem;
+  text-align:left;
 }
 
 .game-card h3 {
-  margin-bottom: 0.5rem;
-  font-size: 1.2rem;
+  margin-bottom:0.5rem;
+  font-size:1.2rem;
   color: var(--secondary);
 }
 
 .game-card p {
-  font-size: 0.9rem;
+  font-size:0.9rem;
   color: var(--text-light);
-  margin-bottom: 0.8rem;
+  margin-bottom:0.8rem;
 }
 
-/* PLAY BUTTON INSIDE CARD */
+/* PLAY BUTTON */
 .game-card a button {
-  width: 100%;
-  background: linear-gradient(90deg, var(--secondary), var(--primary));
-  border: none;
-  padding: 0.5rem;
-  font-weight: bold;
-  color: #000;
-  border-radius: 8px;
-  cursor: pointer;
+  width:100%;
+  background:linear-gradient(90deg,var(--secondary),var(--primary));
+  border:none;
+  padding:0.5rem;
+  font-weight:bold;
+  color:#000;
+  border-radius:8px;
+  cursor:pointer;
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .game-card a button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 10px var(--primary), 0 0 15px var(--secondary);
+  transform:scale(1.05);
+  box-shadow:0 0 10px var(--primary),0 0 15px var(--secondary);
 }
 
 /* RESPONSIVE */
-@media (max-width: 768px) {
-  h1 {
-    font-size: 2.2rem;
-  }
-  button.refresh-btn {
-    padding: 0.6rem 1.5rem;
-    font-size: 0.9rem;
-  }
+@media(max-width:768px){
+  h1 { font-size:2.2rem; }
+  button.refresh-btn { padding:0.6rem 1.5rem; font-size:0.9rem; }
 }
 </style>
 </head>
@@ -160,12 +149,8 @@ async function loadGames() {
 
     container.innerHTML = '';
 
-    const gamesArray = Object.entries(data.games)
-      .sort((a, b) => b[1][1] - a[1][1])
-      .slice(0, 12);
-
-    gamesArray.forEach(([gameId, gameData]) => {
-      const [name, activePlayers, thumbnail] = gameData;
+    data.games.forEach(game => {
+      const { gameId, name, activePlayers, thumbnail } = game;
 
       const card = document.createElement('div');
       card.className = 'game-card';
@@ -187,7 +172,6 @@ async function loadGames() {
     console.error(error);
   }
 }
-
 
 // Load games on page load
 loadGames();
