@@ -139,7 +139,7 @@ async function loadGames() {
   container.innerHTML = 'Loading games...';
 
   try {
-    const response = await fetch('/api/games'); // call Vercel serverless function
+    const response = await fetch('/api/games'); // THIS must match the serverless function
     const data = await response.json();
 
     if (!data.success) {
