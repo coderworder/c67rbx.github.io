@@ -10,14 +10,22 @@ export default async function handler(req, res) {
       return res.status(500).json({ success: false, error: "Failed to fetch games" });
     }
 
-    // Only send top 12 games sorted by active players
-    const gamesArray = Object.entries(data.games)
-      .sort((a, b) => b[1][1] - a[1][1])
-      .slice(0, 12)
-      .map(([gameId, gameData]) => {
-        const [name, activePlayers, thumbnail] = gameData;
-        return { gameId, name, activePlayers, thumbnail };
-      });
+    // Map games with stats
+    const gamesArray = Object.entries(data.games).map(([gameId, gameData]) => {
+      const [name, activePlayers, thumbnail, visits = 0, likes = 0, dislikes = 0, genre = "Unknown"] = [
+        gameData[0],
+        gameData[1],
+        gameData[2],
+        gameData[3],
+        gameData[4],
+        gameData[5],
+        gameData[6]
+      ];
+      return { gameId, name, activePlayers, thumbnail, visits, likes, dislikes, genre };
+    });
+
+    // Sort by active players descending
+    gamesArray.sort((a, b) => b.activePlayers - a.activePlayers);
 
     res.status(200).json({ success: true, games: gamesArray });
   } catch (err) {
